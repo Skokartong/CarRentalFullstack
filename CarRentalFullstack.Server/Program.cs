@@ -27,11 +27,11 @@ namespace CarRentalFullstack
             Env.Load();
 
             // Load environment variables needed for Azure AD authentication
-            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
-            string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
-            string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET");
-            string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY");
-            string audience = Environment.GetEnvironmentVariable("AZURE_AUDIENCE");
+            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID") ?? throw new ArgumentNullException ("TenantId missing");
+            string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID") ?? throw new ArgumentNullException("ClientId missing");
+            string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET") ?? throw new ArgumentNullException("ClientSecret missing");
+            string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY") ?? throw new ArgumentNullException("Authority missing");
+            string audience = Environment.GetEnvironmentVariable("AZURE_AUDIENCE") ?? throw new ArgumentNullException("Audience missing");
 
             // Configure Entity Framework Core with SQL Server
             builder.Services.AddDbContext<CarRentalContext>(options =>
@@ -105,6 +105,12 @@ namespace CarRentalFullstack
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var authService = scope.ServiceProvider.GetRequiredService<IAuthService>();
+                authService.SeedRolesAsync();
             }
 
             app.UseHttpsRedirection();

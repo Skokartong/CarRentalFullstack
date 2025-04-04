@@ -13,11 +13,14 @@ namespace CarRentalFullstack.Server.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+ 
 
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         public async Task<string> RegisterAsync(RegisterDTO registerDto)
@@ -44,6 +47,12 @@ namespace CarRentalFullstack.Server.Services
             }
 
             // Assign default role to the user, admin role is assigned manually in Azure
+            var roleExists = await _roleManager.RoleExistsAsync("customer");
+            if (!roleExists)
+            {
+                await SeedRolesAsync();
+            }
+
             await _userManager.AddToRoleAsync(user, "customer");
 
             return GenerateJwtToken(user);
@@ -62,6 +71,21 @@ namespace CarRentalFullstack.Server.Services
 
             return GenerateJwtToken(user);
         }
+
+        public async Task SeedRolesAsync()
+        {
+            var roleNames = new[] { "customer", "admin" };
+
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await _roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+        }
+
         private string GenerateJwtToken(User user)
         {
             var issuer = Environment.GetEnvironmentVariable("AZURE_AUTHORITY");

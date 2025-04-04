@@ -5,6 +5,7 @@ namespace CarRentalFullstack.Server.Services.IServices
 {
     public interface IAuthService
     {
+        Task SeedRolesAsync();
         Task<string> RegisterAsync(RegisterDTO registerDto);
         Task<string> LoginAsync(string username, string password);
     }
