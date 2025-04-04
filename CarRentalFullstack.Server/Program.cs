@@ -3,13 +3,18 @@ using CarRentalFullstack.Server.Data.Repositories;
 using CarRentalFullstack.Server.Data.Repositories.IRepositories;
 using CarRentalFullstack.Services;
 using CarRentalFullstack.Services.IServices;
-using CarRentalFullstack.Server.Data.Repositories.IRepositories;
-using CarRentalFullstack.Server.Data.Repositories;
 using Serilog;
 using Serilog.AspNetCore;
 using CarRentalFullstack.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using CarRentalFullstack.Server.Models;
+using Microsoft.AspNetCore.Identity;
+using CarRentalFullstack.Server.Services;
+using CarRentalFullstack.Server.Services.IServices;
 
 namespace CarRentalFullstack
 {
@@ -21,8 +26,47 @@ namespace CarRentalFullstack
 
             Env.Load();
 
+            // Load environment variables needed for Azure AD authentication
+            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
+            string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
+            string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET");
+            string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY");
+            string audience = Environment.GetEnvironmentVariable("AZURE_AUDIENCE");
+
+            // Configure Entity Framework Core with SQL Server
             builder.Services.AddDbContext<CarRentalContext>(options =>
             options.UseSqlServer(Environment.GetEnvironmentVariable("DefaultConnection")));
+
+
+            // Configure Azure AD authentication
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                   .AddJwtBearer(options =>
+              {
+                  options.Authority = authority;
+                  options.Audience = audience;
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuer = true,
+                      ValidateAudience = true,
+                      ValidateLifetime = true,
+                      ValidIssuer = authority,
+                      ValidAudience = audience
+                  };
+              });
+
+            // Configure Identity
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<CarRentalContext>()
+                .AddDefaultTokenProviders();
+
+            // Configure authorization policies
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Customer", policy =>
+                    policy.RequireRole("customer"));
+                options.AddPolicy("Admin", policy =>
+                    policy.RequireRole("admin"));
+            });
 
             builder.Configuration.AddEnvironmentVariables();
 
@@ -44,8 +88,9 @@ namespace CarRentalFullstack
             // Services
             builder.Services.AddScoped<ICarService, CarService>();
             builder.Services.AddScoped<IRentalService, RentalService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
-            // Repos
+            // Repositories
             builder.Services.AddScoped<ICarRepository, CarRepository>();
             builder.Services.AddScoped<IRentalRepository, RentalRepository>();
 
@@ -64,6 +109,7 @@ namespace CarRentalFullstack
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
