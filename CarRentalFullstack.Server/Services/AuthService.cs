@@ -4,6 +4,7 @@ using System.Text;
 using CarRentalFullstack.Server.Models;
 using CarRentalFullstack.Server.Models.DTOs;
 using CarRentalFullstack.Server.Services.IServices;
+using CarRentalFullstack.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -14,13 +15,14 @@ namespace CarRentalFullstack.Server.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
- 
+        private readonly ILogger<AuthService> _logger;
 
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, ILogger<AuthService> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _logger = logger;
         }
 
         public async Task<string> RegisterAsync(RegisterDTO registerDto)
