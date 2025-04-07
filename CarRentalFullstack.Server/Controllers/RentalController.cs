@@ -95,9 +95,9 @@ namespace CarRentalFullstack.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateRental([FromBody] CreateUpdateRentalDTO rental)
+        public async Task<IActionResult> UpdateRental(string rentalId, [FromBody] CreateUpdateRentalDTO rental)
         {
-            var result = await _rentalService.UpdateRentalAsync(rental);
+            var result = await _rentalService.UpdateRentalAsync(rentalId, rental);
 
             if (result.HasError)
             {

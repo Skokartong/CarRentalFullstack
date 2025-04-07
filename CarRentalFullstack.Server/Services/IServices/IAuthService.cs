@@ -7,6 +7,6 @@ namespace CarRentalFullstack.Server.Services.IServices
     {
         Task SeedRolesAsync();
         Task<string> RegisterAsync(RegisterDTO registerDto);
-        Task<string> LoginAsync(string username, string password);
+        Task<string> LoginAsync(LoginDTO loginDTO);
     }
 }

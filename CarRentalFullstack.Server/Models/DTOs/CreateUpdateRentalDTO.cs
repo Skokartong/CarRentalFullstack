@@ -7,8 +7,6 @@ namespace CarRentalFullstack.Server.Models.DTOs
 {
     public class CreateUpdateRentalDTO
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required]
         public DateTime RentalStart { get; set; }
         [Required]

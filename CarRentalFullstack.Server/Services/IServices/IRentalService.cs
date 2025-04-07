@@ -11,7 +11,7 @@ namespace CarRentalFullstack.Services.IServices
     {
         Task<bool> IsCarAvailableAsync(string carId, DateTime rentalStart, DateTime rentalEnd, string rentalId = null);
         Task<ResultModel<CreateUpdateRentalDTO>> AddRentalAsync(CreateUpdateRentalDTO rental);
-        Task<ResultModel<CreateUpdateRentalDTO>> UpdateRentalAsync(CreateUpdateRentalDTO rental);
+        Task<ResultModel<CreateUpdateRentalDTO>> UpdateRentalAsync(string rentalId, CreateUpdateRentalDTO rental);
         Task<ResultModel<Rental>> DeleteRentalAsync(string rentalId);
         Task<ResultModel<Rental>> GetRentalByIdAsync(string rentalId);
         Task<ResultModel<List<Rental>>> GetRentalsByCountryAsync(CountryCode country);

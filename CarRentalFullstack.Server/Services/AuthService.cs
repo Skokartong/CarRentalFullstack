@@ -60,16 +60,16 @@ namespace CarRentalFullstack.Server.Services
             return GenerateJwtToken(user);
         }
 
-        public async Task<string> LoginAsync(string username, string password)
+        public async Task<string> LoginAsync(LoginDTO loginDTO)
         {
-            var user = await _userManager.FindByNameAsync(username);
+            var user = await _userManager.FindByNameAsync(loginDTO.Username);
 
-            if (user == null || !await _userManager.CheckPasswordAsync(user, password))
+            if (user == null || !await _userManager.CheckPasswordAsync(user, loginDTO.Password))
             {
                 return null;
             }
 
-            await _signInManager.PasswordSignInAsync(user, password, false, false);
+            await _signInManager.PasswordSignInAsync(user, loginDTO., false, false);
 
             return GenerateJwtToken(user);
         }

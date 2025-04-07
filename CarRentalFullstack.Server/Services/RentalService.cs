@@ -121,15 +121,15 @@ namespace CarRentalFullstack.Services
             return ResultModel<Rental>.Success(rental);
         }
 
-        public async Task<ResultModel<CreateUpdateRentalDTO>> UpdateRentalAsync(CreateUpdateRentalDTO CreateUpdateRentalDTO)
+        public async Task<ResultModel<CreateUpdateRentalDTO>> UpdateRentalAsync(string rentalId, CreateUpdateRentalDTO CreateUpdateRentalDTO)
         {
-            var rental = await _rentalRepository.GetRentalByIdAsync(CreateUpdateRentalDTO.Id);
+            var rental = await _rentalRepository.GetRentalByIdAsync(rentalId);
 
             if (rental == null)
             {
-                _logger.LogInformation("{Method}: Could not find any rental with ID: {Id}.", nameof(UpdateRentalAsync), CreateUpdateRentalDTO.Id);
+                _logger.LogInformation("{Method}: Could not find any rental with ID: {Id}.", nameof(UpdateRentalAsync), rentalId);
 
-                var error = new ErrorModel($"Could not find rental with ID: {CreateUpdateRentalDTO.Id}", HttpStatusCode.NotFound);
+                var error = new ErrorModel($"Could not find rental with ID: {rentalId}", HttpStatusCode.NotFound);
                 return ResultModel<CreateUpdateRentalDTO>.Failure(error);
             }
 
