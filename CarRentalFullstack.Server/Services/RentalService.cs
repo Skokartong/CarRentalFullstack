@@ -90,7 +90,7 @@ namespace CarRentalFullstack.Services
 
             await _rentalRepository.AddRentalAsync(rentalToAdd);
 
-            _logger.LogInformation("{Method}: Successfully added rental with ID: {Id}.", nameof(AddRentalAsync), rental.Id);
+            _logger.LogInformation("{Method}: Successfully added rental.", nameof(AddRentalAsync));
             return ResultModel<CreateUpdateRentalDTO>.Success(rental);
         }
 
@@ -143,11 +143,11 @@ namespace CarRentalFullstack.Services
                 return ResultModel<CreateUpdateRentalDTO>.Failure(error);
             }
 
-            bool isAvailable = await IsCarAvailableAsync(CreateUpdateRentalDTO.FK_CarId, CreateUpdateRentalDTO.RentalStart, CreateUpdateRentalDTO.RentalEnd, CreateUpdateRentalDTO.Id);
+            bool isAvailable = await IsCarAvailableAsync(CreateUpdateRentalDTO.FK_CarId, CreateUpdateRentalDTO.RentalStart, CreateUpdateRentalDTO.RentalEnd, rentalId);
 
             if (!isAvailable)
             {
-                _logger.LogInformation("{Method}: Car with ID: {Id} not available for selected rental period.", nameof(UpdateRentalAsync), CreateUpdateRentalDTO.Id);
+                _logger.LogInformation("{Method}: Car with ID: {Id} not available for selected rental period.", nameof(UpdateRentalAsync), rentalId);
 
                 var error = new ErrorModel("Car is not available for selected period.", HttpStatusCode.Conflict);
                 return ResultModel<CreateUpdateRentalDTO>.Failure(error);
@@ -255,6 +255,22 @@ namespace CarRentalFullstack.Services
             }
 
             _logger.LogInformation("{Method}: Successfully fetched all rentals from car with ID: {Id}", nameof(GetRentalsByCarIdAsync), carId);
+            return ResultModel<List<Rental>>.Success(rentals);
+        }
+
+        public async Task<ResultModel<List<Rental>>> GetRentalsByCustomerIdAsync(string userId)
+        {
+            var rentals = await _rentalRepository.GetRentalsByCustomerIdAsync(userId);
+            
+            if (rentals == null)
+            {
+                _logger.LogInformation("{Method}: No rentals for customer with ID: {Id} exist.", nameof(GetRentalsByCustomerIdAsync), userId);
+                
+                var error = new ErrorModel($"No rentals found for customer with ID: {userId}", HttpStatusCode.NotFound);
+                return ResultModel<List<Rental>>.Failure(error);
+            }
+
+            _logger.LogInformation("{Method}: Successfully fetched all rentals from customer with ID: {Id}", nameof(GetRentalsByCustomerIdAsync), userId);
             return ResultModel<List<Rental>>.Success(rentals);
         }
     }

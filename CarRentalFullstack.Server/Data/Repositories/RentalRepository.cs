@@ -67,6 +67,15 @@ namespace CarRentalFullstack.Server.Data.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<Rental>> GetRentalsByCustomerIdAsync(string userId)
+        {
+            _logger.LogInformation("Fetching rentals from customer with ID: {Id} in the repository.", userId);
+            
+            return await _context.Rentals
+                .Where(r => r.FK_UserId == userId)
+                .ToListAsync();
+        }
+
         public async Task<List<Rental>> GetRentalsAsync()
         {
             _logger.LogInformation("Fetching all rentals in the repository.");

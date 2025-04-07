@@ -12,5 +12,6 @@ namespace CarRentalFullstack.Server.Data.Repositories.IRepositories
         Task<List<Rental>> GetRentalsByCountryAsync(CountryCode country);
         Task<List<Rental>> GetRentalsByCarIdAsync(string carId);
         Task<List<Rental>> GetRentalsAsync();
+        Task<List<Rental>> GetRentalsByCustomerIdAsync(string userId);
     }
 }

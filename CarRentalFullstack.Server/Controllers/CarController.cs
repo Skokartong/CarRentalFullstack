@@ -2,6 +2,7 @@
 using CarRentalFullstack.Models.Enums;
 using CarRentalFullstack.Models.ResultModel;
 using CarRentalFullstack.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace CarRentalFullstack.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AddCar([FromBody] Car car)
         {
@@ -50,6 +52,7 @@ namespace CarRentalFullstack.Controllers
             return Ok(result.Value);
         }
 
+        [Authorize(Roles = "admin, customer")]
         [HttpGet("{carId}")]
         public async Task<ActionResult<Car>> GetCarById(string carId)
         {
@@ -78,6 +81,7 @@ namespace CarRentalFullstack.Controllers
             return Ok(result.Value);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         public async Task<IActionResult> UpdateCar([FromBody] Car car)
         {
@@ -92,6 +96,7 @@ namespace CarRentalFullstack.Controllers
             return Ok(result.Value);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{carId}")]
         public async Task<IActionResult> DeleteCar(string carId)
         {
