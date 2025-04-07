@@ -43,7 +43,7 @@ namespace CarRentalFullstack.Server.Controllers
                 return BadRequest("Invalid login data");
             }
 
-            var token = await _authService.LoginAsync(loginDto.Username, loginDto.Password);
+            var token = await _authService.LoginAsync(loginDto);
 
             if (token == null)
             {

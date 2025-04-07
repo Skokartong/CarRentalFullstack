@@ -69,7 +69,7 @@ namespace CarRentalFullstack.Server.Services
                 return null;
             }
 
-            await _signInManager.PasswordSignInAsync(user, loginDTO., false, false);
+            await _signInManager.PasswordSignInAsync(user, loginDTO.Password, false, false);
 
             return GenerateJwtToken(user);
         }
