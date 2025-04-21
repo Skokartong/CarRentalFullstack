@@ -10,12 +10,20 @@ const axiosInstance = axios.create({
     },
 });
 
-export async function getRentalsByCountry(country) {
+export async function getAvailableCars(country, startDate, endDate) {
     try {
-        const response = await axiosInstance.get(`/country/${country}`);
-        return response.data; 
+        const response = await axios.get('/available', {
+            params: {
+                country,
+                startDate,
+                endDate,
+            },
+        });
+
+        return response.data;
     } catch (error) {
-        throw new Error(error.response?.data?.error || 'Failed to fetch rentals by country');
+        const errorMsg = error.response?.data?.error || 'Failed to fetch available cars';
+        throw new Error(errorMsg);
     }
 }
 
