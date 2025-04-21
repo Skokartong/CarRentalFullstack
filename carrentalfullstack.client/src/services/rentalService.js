@@ -10,6 +10,15 @@ const axiosInstance = axios.create({
     },
 });
 
+export async function getRentalsByCountry(country) {
+    try {
+        const response = await axiosInstance.get(`/country/${country}`);
+        return response.data; 
+    } catch (error) {
+        throw new Error(error.response?.data?.error || 'Failed to fetch rentals by country');
+    }
+}
+
 export async function getAllRentals(token) {
     const { token } = useAuth();
     try {
