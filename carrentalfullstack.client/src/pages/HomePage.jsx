@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
+import { getAvailableCars } from '../services/rentalService';
 import './HomePage.css';
 
 export function HomePage() {
@@ -19,22 +20,13 @@ export function HomePage() {
             endDate: endDate,
         });
 
+        // Calling our service
         try {
-            const response = await fetch(`/api/rentals/available?${query.toString()}`);
-
-            if (!response.ok) {
-                const errorMsg = await response.text();
-                setError(errorMsg);
-                return;
-            }
-
-            const availableCars = await response.json();
+            const availableCars = await getAvailableCars(country, startDate, endDate);
             console.log('Available cars:', availableCars);
-
             navigate('/available-cars', { state: { availableCars } });
         } catch (err) {
-            setError('Something went wrong. Please try again later.');
-            console.error(err);
+            setError(err.message);
         }
     };
 
