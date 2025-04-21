@@ -29,6 +29,41 @@ namespace CarRentalFullstack.Services
             _logger = logger;
         }
 
+        public async Task<ResultModel<List<Car>>> GetAvailableCarsAsync(CountryCode country, DateTime rentalStart, DateTime rentalEnd)
+        {
+            var carsResult = await _carRepository.GetCarsByCountryAsync(country);
+
+            if (carsResult == null || !carsResult.Any())
+            {
+                var error = new ErrorModel("No cars found in this country.", HttpStatusCode.NotFound);
+                return ResultModel<List<Car>>.Failure(error);
+            }
+
+            var availableCars = new List<Car>();
+
+            foreach (var car in carsResult)
+            {
+                var rentals = await _rentalRepository.GetRentalsByCarIdAsync(car.Id);
+
+                bool isAvailable = true;
+                foreach (var rental in rentals)
+                {
+                    if ((rentalStart < rental.RentalEndDate) && (rentalEnd > rental.RentalStartDate))
+                    {
+                        isAvailable = false;
+                        break;
+                    }
+                }
+
+                if (isAvailable)
+                {
+                    availableCars.Add(car);
+                }
+            }
+
+            return ResultModel<List<Car>>.Success(availableCars);
+        }
+
         public async Task<bool> IsCarAvailableAsync(string carId, DateTime rentalStartDate, DateTime rentalEndDate, string rentalId = null)
         {
             var rentals = await _rentalRepository.GetRentalsByCarIdAsync(carId);

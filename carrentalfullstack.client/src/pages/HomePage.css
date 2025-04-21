@@ -1,0 +1,51 @@
+.homepage {
+    background-image: url('/src/assets/friendscar.jpg'); 
+    background-size: cover;
+    background-position: center;
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.search-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+    .search-form input,
+    .search-form select,
+    .search-form button {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 15px;
+        border: none;
+    }
+
+    .search-form button {
+        background-color: #3d87f1;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+.error-message {
+    color: #ffcccc;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}

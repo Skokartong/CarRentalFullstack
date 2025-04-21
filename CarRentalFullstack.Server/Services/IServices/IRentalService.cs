@@ -18,5 +18,6 @@ namespace CarRentalFullstack.Services.IServices
         Task<ResultModel<List<Rental>>> GetRentalsByCarIdAsync(string carId);
         Task<ResultModel<List<Rental>>> GetRentalsByCustomerIdAsync(string userId);
         Task<ResultModel<List<Rental>>> GetRentalsAsync();
+        Task<ResultModel<List<Car>>> GetAvailableCarsAsync(CountryCode country, DateTime rentalStart, DateTime rentalEnd);
     }
 }

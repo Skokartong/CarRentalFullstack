@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const API_BASE = '/api/rentals';
 
@@ -10,6 +11,7 @@ const axiosInstance = axios.create({
 });
 
 export async function getAllRentals(token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get('/', {
             headers: {
@@ -26,6 +28,7 @@ export async function getAllRentals(token) {
 }
 
 export async function getRentalById(rentalId, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/${rentalId}`, {
             headers: {
@@ -42,6 +45,7 @@ export async function getRentalById(rentalId, token) {
 }
 
 export async function addRental(rental, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.post('/', rental, {
             headers: {
@@ -58,6 +62,7 @@ export async function addRental(rental, token) {
 }
 
 export async function getRentalsByCountry(country, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/country/${country}`, {
             headers: {
@@ -74,6 +79,7 @@ export async function getRentalsByCountry(country, token) {
 }
 
 export async function getRentalsByCarId(carId, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/cars/${carId}`, {
             headers: {
@@ -90,6 +96,7 @@ export async function getRentalsByCarId(carId, token) {
 }
 
 export async function updateRental(rentalId, rental, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.put('/', rental, {
             headers: {
@@ -109,6 +116,7 @@ export async function updateRental(rentalId, rental, token) {
 }
 
 export async function getRentalsByCustomerId(userId, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/user/${userId}`, {
             headers: {
@@ -125,6 +133,7 @@ export async function getRentalsByCustomerId(userId, token) {
 }
 
 export async function deleteRental(rentalId, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.delete(`/${rentalId}`, {
             headers: {

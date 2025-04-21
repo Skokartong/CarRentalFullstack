@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2191419">
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2191419">
   <PropertyGroup>
     <StartupCommand>npm run dev</StartupCommand>
     <JavaScriptTestRoot>src\</JavaScriptTestRoot>
@@ -11,8 +11,5 @@
   <ItemGroup>
     <None Remove="src\services\api\**" />
     <TypeScriptConfiguration Remove="src\services\api\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\assets\" />
   </ItemGroup>
 </Project>

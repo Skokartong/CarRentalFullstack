@@ -25,6 +25,21 @@ namespace CarRentalFullstack.Controllers
             _logger = logger;
         }
 
+
+        [AllowAnonymous]
+        [HttpGet("available")]
+        public async Task<IActionResult> GetAvailableCars([FromQuery] CountryCode country, [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            var result = await _rentalService.GetAvailableCarsAsync(country, startDate, endDate);
+
+            if (result.HasError)
+            {
+                return NotFound(new { result.Error });
+            }
+
+            return Ok(result.Value);
+        }
+
         [Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<ActionResult<List<Rental>>> GetAllRentals()

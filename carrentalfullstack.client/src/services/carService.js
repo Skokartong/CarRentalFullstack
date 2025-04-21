@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const API_BASE = '/api/cars';
 
@@ -29,6 +30,7 @@ export async function getAllCars() {
 }
 
 export async function getCarById(carId, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/${carId}`, {
             headers: {
@@ -42,6 +44,7 @@ export async function getCarById(carId, token) {
 }
 
 export async function getCarsByCountry(country, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/country/${country}`, {
             headers: {
@@ -55,6 +58,7 @@ export async function getCarsByCountry(country, token) {
 }
 
 export async function addCar(car, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.post('/', car, {
             headers: {
@@ -68,6 +72,7 @@ export async function addCar(car, token) {
 }
 
 export async function updateCar(car, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.put('/', car, {
             headers: {
@@ -81,6 +86,7 @@ export async function updateCar(car, token) {
 }
 
 export async function deleteCar(carId, token) {
+    const { token } = useAuth();
     try {
         const response = await axiosInstance.delete(`/${carId}`, {
             headers: {
