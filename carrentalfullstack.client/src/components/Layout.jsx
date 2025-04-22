@@ -5,7 +5,7 @@ export function Layout({ children }) {
     return (
         <>
             <Navbar />
-            <main style={{ marginTop: '0' }}>
+            <main style={{ marginTop: '10vh' }}>
                 {children}
             </main>
         </>

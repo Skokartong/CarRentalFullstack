@@ -24,10 +24,18 @@ namespace CarRentalFullstack
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder => builder.AllowAnyOrigin()
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader());
+            });
+
             Env.Load();
 
             // Load environment variables needed for Azure AD authentication
-            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID") ?? throw new ArgumentNullException ("TenantId missing");
+            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID") ?? throw new ArgumentNullException("TenantId missing");
             string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID") ?? throw new ArgumentNullException("ClientId missing");
             string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET") ?? throw new ArgumentNullException("ClientSecret missing");
             string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY") ?? throw new ArgumentNullException("Authority missing");
@@ -117,6 +125,8 @@ namespace CarRentalFullstack
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors("AllowAll");
 
             app.MapControllers();
 

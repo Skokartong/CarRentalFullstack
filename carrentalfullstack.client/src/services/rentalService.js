@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-const API_BASE = '/api/rentals';
 
 const axiosInstance = axios.create({
-    baseURL: API_BASE,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -12,7 +10,7 @@ const axiosInstance = axios.create({
 
 export async function getAvailableCars(country, startDate, endDate) {
     try {
-        const response = await axios.get('/available', {
+        const response = await axios.get('/api/rentals/available', {
             params: {
                 country,
                 startDate,
@@ -28,9 +26,8 @@ export async function getAvailableCars(country, startDate, endDate) {
 }
 
 export async function getAllRentals(token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.get('/', {
+        const response = await axiosInstance.get('/api/rentals', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -45,9 +42,8 @@ export async function getAllRentals(token) {
 }
 
 export async function getRentalById(rentalId, token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.get(`/${rentalId}`, {
+        const response = await axiosInstance.get(`/api/rentals/${rentalId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -62,7 +58,6 @@ export async function getRentalById(rentalId, token) {
 }
 
 export async function addRental(rental, token) {
-    const { token } = useAuth();
     try {
         const response = await axiosInstance.post('/', rental, {
             headers: {
@@ -79,9 +74,8 @@ export async function addRental(rental, token) {
 }
 
 export async function getRentalsByCountry(country, token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.get(`/country/${country}`, {
+        const response = await axiosInstance.get(`/api/rentals/country/${country}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -96,9 +90,8 @@ export async function getRentalsByCountry(country, token) {
 }
 
 export async function getRentalsByCarId(carId, token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.get(`/cars/${carId}`, {
+        const response = await axiosInstance.get(`/api/rentals/cars/${carId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -113,9 +106,8 @@ export async function getRentalsByCarId(carId, token) {
 }
 
 export async function updateRental(rentalId, rental, token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.put('/', rental, {
+        const response = await axiosInstance.put('/api/rentals', rental, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -133,9 +125,8 @@ export async function updateRental(rentalId, rental, token) {
 }
 
 export async function getRentalsByCustomerId(userId, token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.get(`/user/${userId}`, {
+        const response = await axiosInstance.get(`api/rentals/user/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -150,9 +141,8 @@ export async function getRentalsByCustomerId(userId, token) {
 }
 
 export async function deleteRental(rentalId, token) {
-    const { token } = useAuth();
     try {
-        const response = await axiosInstance.delete(`/${rentalId}`, {
+        const response = await axiosInstance.delete(`/api/rentals/${rentalId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

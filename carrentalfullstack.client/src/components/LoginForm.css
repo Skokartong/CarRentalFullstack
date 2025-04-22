@@ -1,0 +1,23 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.btn{
+    border-radius:15px;
+}
+
+h2{
+   font-size:2.7em;
+}
+
+.vh-90 {
+    height: 90vh !important;
+    background-image: url('src/assets/vintage-car.jpg');
+}
+
+.card-container {
+    background-color: #f9f9f9;
+    border-radius: 15px; 
+    padding: 40px; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+}
