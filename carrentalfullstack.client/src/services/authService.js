@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
 
 const API_BASE = '/api/auth';
 
@@ -12,26 +11,19 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
-        const { token } = useAuth();  
+        const token = localStorage.getItem('authToken');
         if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`; 
+            config.headers['Authorization'] = `Bearer ${token}`;
         }
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
 export async function login(loginDto) {
     try {
         const response = await axiosInstance.post('/login', loginDto);
-
-        const token = response.data.token;  
-        setToken(token);
-
-        return response.data;
-
+        return response.data; 
     } catch (error) {
         if (error.response) {
             throw new Error(error.response.data.error || 'Invalid login credentials');
@@ -57,4 +49,5 @@ export async function register(registerDto) {
         }
     }
 }
+
 
