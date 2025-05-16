@@ -40,7 +40,7 @@ export const RegisterForm = ({ formData, onChange, onSubmit, error }) => {
                     <div className="col-12 d-flex justify-content-center">
                         <button
                             type="submit"
-                            className="btn btn-primary py-2"
+                            className="btn btn-primary py-2 rounded-lg"
                             style={{ maxWidth: '300px', width: '100%' }}
                         >
                             Register

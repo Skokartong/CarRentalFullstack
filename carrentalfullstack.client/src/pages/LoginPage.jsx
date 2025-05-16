@@ -17,7 +17,7 @@ export const LoginPage = () => {
             const response = await login({ username, password }); 
             setToken(response.token); 
             console.log("Login successful", response);
-            navigate('/cars');
+            navigate('/account');
         } catch (err) {
             console.error("Login failed", err.message);
         }

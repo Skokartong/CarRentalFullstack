@@ -1,0 +1,13 @@
+.account-page-container {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; 
+}
+
+.account-column {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}

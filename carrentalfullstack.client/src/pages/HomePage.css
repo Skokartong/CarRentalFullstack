@@ -21,6 +21,10 @@
     width: 90%;
 }
 
+.h1-tag{
+    font-weight:200;
+}
+
 .search-form {
     margin-top: 1rem;
     display: flex;
@@ -36,6 +40,14 @@
         border-radius: 15px;
         border: none;
     }
+
+    p{
+        font-size: 20px;
+    }
+
+span {
+    font-weight: 600;
+}
 
     .search-form button {
         background-color: #3d87f1;

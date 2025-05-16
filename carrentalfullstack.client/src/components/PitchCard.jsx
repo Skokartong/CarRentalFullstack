@@ -18,11 +18,15 @@ export const PitchCard = () => {
                     </div>
                     <div className="d-flex align-items-center mb-3">
                         <FaCheckCircle size={24} className="me-2" style={{ color: '#3d87f1' }} />
-                        <p className="mb-0">Access a wide range of vehicles</p>
+                        <p className="mb-0">Full insurance coverage included</p>
                     </div>
                     <div className="d-flex align-items-center mb-3">
                         <FaCheckCircle size={24} className="me-2" style={{ color: '#3d87f1' }} />
-                        <p className="mb-0">Get amazing offers and discounts</p>
+                        <p className="mb-0">Get exclusive offers and discounts</p>
+                    </div>
+                    <div className="d-flex align-items-center mb-3">
+                        <FaCheckCircle size={24} className="me-2" style={{ color: '#3d87f1' }} />
+                        <p className="mb-0">Access a wide range of vehicles</p>
                     </div>
                     <div className="d-flex align-items-center mb-3">
                         <FaCheckCircle size={24} className="me-2" style={{ color: '#3d87f1' }} />

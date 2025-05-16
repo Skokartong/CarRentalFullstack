@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = '/api/auth';
+const API_BASE = '/api/Auth';
 
 const axiosInstance = axios.create({
     baseURL: API_BASE,
@@ -49,5 +49,19 @@ export async function register(registerDto) {
         }
     }
 }
+
+export async function getAccount() {
+    try {
+        const response = await axiosInstance.get('/account');
+        return response.data; 
+    } catch (error) {
+        throw new Error('Failed to fetch account info');
+    }
+}
+
+export async function logout() {
+    localStorage.removeItem("authToken");
+}
+
 
 

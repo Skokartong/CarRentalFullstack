@@ -1,6 +1,7 @@
 ﻿using CarRentalFullstack.Server.Models;
 using CarRentalFullstack.Server.Models.DTOs;
 using CarRentalFullstack.Server.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,18 @@ namespace CarRentalFullstack.Server.Controllers
             }
 
             return Ok(new { Token = token });
+        }
+
+        [Authorize(Roles = "admin, customer")]
+        [HttpGet("account")]
+        public async Task<ActionResult<AccountDTO>> GetAccount()
+        {
+            var account = await _authService.ViewAccountAsync(User);
+            if (account == null)
+            {
+                return NotFound();
+            }
+            return Ok(account);
         }
     }
 }

@@ -88,6 +88,30 @@ namespace CarRentalFullstack.Server.Services
             }
         }
 
+        public async Task<AccountDTO> ViewAccountAsync(ClaimsPrincipal userPrincipal)
+        {
+            var user = await _userManager.GetUserAsync(userPrincipal);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new AccountDTO
+            {
+                Username = user.UserName,
+                Email = user.Email,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Address = user.Address,
+                PostalCode = user.PostalCode,
+                City = user.City,
+                Country = user.Country,
+                Phone = user.Phone,
+                BirthDate = user.BirthDate
+            };
+        }
+
         private string GenerateJwtToken(User user)
         {
             var issuer = Environment.GetEnvironmentVariable("AZURE_AUTHORITY");

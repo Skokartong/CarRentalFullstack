@@ -40,8 +40,8 @@ export function HomePage() {
     return (
         <div className="homepage">
             <div className="overlay">
-                <h1>POQ</h1>
-                <p>Car rentals anytime, anywhere, globally.</p>
+                <h1 class="h1-tag">POQ</h1>
+                <p>Car rentals <span>anytime, anywhere, globally.</span></p>
 
                 <SearchForm
                     country={country}

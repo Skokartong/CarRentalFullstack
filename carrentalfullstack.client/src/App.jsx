@@ -7,6 +7,7 @@ import { CarsPage } from './pages/CarsPage';
 import { LoginPage } from './pages/LoginPage';
 import { AboutPage } from './pages/AboutPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { AccountPage } from './pages/AccountPage';
 import { Layout } from './components/Layout';
 import { AvailableCarsPage } from './pages/AvailableCarsPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/about" element={<AboutPage />} />
+                        <Route path="/account" element={<AccountPage/> } />
                         <Route path="/cars" element={<CarsPage />} />
                         <Route path="/available-cars" element={<AvailableCarsPage />} />
                         <Route path="/login" element={<LoginPage />} />

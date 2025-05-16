@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './AvailableCarsPage.css';
-import { CarCard } from '../components/CarCard'; 
+import { CarCard } from '../components/CarCard';
 import { getAvailableCars } from '../services/rentalService';
 
 export function AvailableCarsPage() {
     const [searchParams] = useSearchParams();
     const [availableCars, setAvailableCars] = useState([]);
+    const [sortedCars, setSortedCars] = useState([]);
+    const [sortBy, setSortBy] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -29,6 +31,7 @@ export function AvailableCarsPage() {
 
                 if (Array.isArray(cars)) {
                     setAvailableCars(cars);
+                    setSortedCars(cars); 
                 } else {
                     setError('Unexpected response format from API');
                 }
@@ -42,22 +45,46 @@ export function AvailableCarsPage() {
         fetchCars();
     }, [searchParams]);
 
+    useEffect(() => {
+        let sorted = [...availableCars];
+        if (sortBy === 'pricePerDay') {
+            sorted.sort((a, b) => a.pricePerDay - b.pricePerDay);
+        } else if (sortBy === 'pricePerHour') {
+            sorted.sort((a, b) => a.pricePerHour - b.pricePerHour);
+        }
+        setSortedCars(sorted);
+    }, [sortBy, availableCars]);
+
     return (
         <div className="available-cars-page">
-            <h2>Available Cars</h2>
+            <div className="header-section d-flex justify-content-between align-items-center mb-4">
+                <h2 className="mb-0">Available Cars</h2>
+                <div className="filter-dropdown">
+                    <select
+                        onChange={(e) => setSortBy(e.target.value)}
+                        value={sortBy}
+                        className="form-select"
+                    >
+                        <option value="">Filter</option>
+                        <option value="pricePerDay">Price per Day</option>
+                        <option value="pricePerHour">Price per Hour</option>
+                    </select>
+                </div>
+            </div>
 
             {loading && <p>Loading...</p>}
             {error && <p className="error-message">{error}</p>}
-            {!error && !loading && availableCars.length === 0 && (
+            {!error && !loading && sortedCars.length === 0 && (
                 <p>No available cars found for the selected criteria.</p>
             )}
 
             <div className="car-list">
-                {availableCars.map((car) => (
-                    <CarCard key={car.id} car={car} />  
+                {sortedCars.map((car) => (
+                    <CarCard key={car.id} car={car} />
                 ))}
             </div>
         </div>
     );
+
 }
 

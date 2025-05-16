@@ -1,0 +1,25 @@
+.car-card {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.car-card:hover {
+    transform: scale(1.02);
+}
+
+.car-card img.card-img-top {
+    height: 300px; 
+    object-fit: cover; 
+    width: 100%;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+ }
+
+.info-pairs {
+    font-size: 1rem;
+    color: #333;
+}

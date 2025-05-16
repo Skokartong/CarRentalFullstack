@@ -1,0 +1,36 @@
+.rentals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rental-card {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+    .rental-card:hover {
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .rental-card h4 {
+        margin-bottom: 8px;
+    }
+
+.view-btn {
+    background-color: #3d87f1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+    .view-btn:hover {
+        background-color: #2c6edb;
+    }

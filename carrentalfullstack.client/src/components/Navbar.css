@@ -23,16 +23,11 @@
     margin-left: 20px;
 }
 
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
 .navbar-links {
     display: flex;
     gap: 20px;
     font-family: "Poppins", sans-serif;
+    margin-right: 30px;
 }
 
 .navbar-links a {
@@ -44,24 +39,17 @@
     gap: 8px;
 }
 
-.navbar-right {
-    display: flex;
-    font-family: "Poppins", sans-serif;
-    gap: 20px;
-}
-
 .login-btn {
     border: 2px solid #3d87f1 !important;
     border-radius: 15px !important;
     color: #3d87f1;
 }
 
-.register-btn {
+.register-btn, .logout-btn{
     background-color: #3d87f1 !important;
     border-radius: 15px !important;
     color: white !important;
     border: none;
-    margin-right: 30px;
 }
 
 .hamburger {
