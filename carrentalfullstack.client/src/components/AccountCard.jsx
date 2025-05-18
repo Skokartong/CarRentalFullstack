@@ -1,5 +1,6 @@
 import React from 'react';
 import defaultImage from '../assets/carola.jpg';
+import './AccountCard.css';
 
 export const AccountCard = ({ account }) => {
     const [image, setImage] = React.useState(defaultImage);
@@ -13,7 +14,7 @@ export const AccountCard = ({ account }) => {
     };
 
     return (
-        <div className="card shadow-sm p-3 mb-5 bg-white rounded-lg" style={{ width: '24rem', borderRadius: '25px' }}>
+        <div className="card p-3 mb-5 bg-white rounded-lg" style={{ width: '24rem', borderRadius: '20px' }}>
             <div className="text-center">
                 <img
                     src={image}
