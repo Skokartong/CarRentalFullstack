@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CarCard.css';
 
 import mazdaCx5 from '../assets/mazdacx5.jpg';
@@ -19,16 +19,25 @@ const carImages = {
 
 const getCarImage = (model) => carImages[model] || null;
 
-export const CarCard = ({ car }) => {
+export const CarCard = ({ car, onBook, showRegisterBanner }) => {
     const carImage = getCarImage(car.model);
+    const [showAlert, setShowAlert] = useState(false);
+
+    const handleBookClick = () => {
+        if (showRegisterBanner) {
+            setShowAlert(true); 
+        } else {
+            onBook();
+        }
+    };
 
     return (
-        <div className="car-card card shadow-lg mb-5">
+        <div className="car-card card shadow-lg mb-5" style={{ borderRadius: '15px' }}>
             {carImage ? (
                 <img className="card-img-top" src={carImage} alt={`${car.brand} ${car.model}`} />
             ) : (
-                <div className="no-image text-center py-5 text-muted">
-                    <em>No image available</em>
+                <div>
+                    <img className="card-img-top" src={s90} alt={`${car.brand} ${car.model}`} />
                 </div>
             )}
 
@@ -41,12 +50,20 @@ export const CarCard = ({ car }) => {
                 </div>
 
                 <div className="info-pairs d-flex justify-content-between mb-4">
-                    <span><strong>${car.pricePerDay}</strong>/Day</span>
-                    <span><strong>${car.pricePerHour}</strong>/Hour</span>
+                    <span><strong>{car.pricePerDay} SEK</strong>/Day</span>
+                    <span><strong>{car.pricePerHour} SEK</strong>/Hour</span>
                 </div>
 
                 <div className="text-center">
-                    <a href="#" className="btn btn-primary btn-lg w-100">Book Now</a>
+                    {showAlert && (
+                        <div className="alert alert-warning m-3" role="alert">
+                            <strong>To book a car: </strong> <a href="/register" className="alert-link">register here</a>.
+                        </div>
+                    )}
+
+                    <button className="btn btn-primary btn-lg w-100" onClick={() => onBook(car.id)}>
+                        Book Now
+                    </button>
                 </div>
             </div>
         </div>

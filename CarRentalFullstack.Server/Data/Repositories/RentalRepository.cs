@@ -45,7 +45,10 @@ namespace CarRentalFullstack.Server.Data.Repositories
         {
             _logger.LogInformation("Fetching rental with ID: {Id} in the repository.", rentalId);
 
-            return await _context.Rentals.FirstOrDefaultAsync(r => r.Id == rentalId);
+            return await _context.Rentals
+                .Include(r => r.Car)
+                .Include(r => r.User)
+                .FirstOrDefaultAsync(r => r.Id == rentalId);
         }
 
         public async Task<List<Rental>> GetRentalsByCarIdAsync(string carId)

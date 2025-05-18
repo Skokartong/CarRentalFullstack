@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import './AvailableCarsPage.css';
 import { CarCard } from '../components/CarCard';
 import { getAvailableCars } from '../services/rentalService';
+import { useAuth } from '../context/AuthContext';
+import { addRental } from '../services/rentalService';
 
 export function AvailableCarsPage() {
     const [searchParams] = useSearchParams();
@@ -11,6 +13,8 @@ export function AvailableCarsPage() {
     const [sortBy, setSortBy] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const { user, token } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCars = async () => {
@@ -31,7 +35,7 @@ export function AvailableCarsPage() {
 
                 if (Array.isArray(cars)) {
                     setAvailableCars(cars);
-                    setSortedCars(cars); 
+                    setSortedCars(cars);
                 } else {
                     setError('Unexpected response format from API');
                 }
@@ -54,6 +58,35 @@ export function AvailableCarsPage() {
         }
         setSortedCars(sorted);
     }, [sortBy, availableCars]);
+
+    const handleBook = async (carId) => {
+        if (!user) {
+            navigate('/register');
+            return;
+        }
+
+        const startDate = searchParams.get('startDate');
+        const endDate = searchParams.get('endDate');
+
+        if (!startDate || !endDate) {
+            alert('Missing start or end date');
+            return;
+        }
+
+        const rental = {
+            userId: user.id,
+            carId: carId,
+            startDate,
+            endDate
+        };
+
+        try {
+            const newRental = await addRental(rental, token);
+            navigate(`/rentals/${newRental.id}`);
+        } catch (err) {
+            alert(err.message || 'Failed to book rental');
+        }
+    };
 
     return (
         <div className="available-cars-page">
@@ -80,11 +113,15 @@ export function AvailableCarsPage() {
 
             <div className="car-list">
                 {sortedCars.map((car) => (
-                    <CarCard key={car.id} car={car} />
+                    <CarCard
+                        key={car.id}
+                        car={car}
+                        onBook={() => handleBook(car.id)}
+                        showRegisterBanner={!user}
+                    />
                 ))}
             </div>
         </div>
     );
-
 }
 

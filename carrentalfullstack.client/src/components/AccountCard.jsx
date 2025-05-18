@@ -22,7 +22,7 @@ export const AccountCard = ({ account }) => {
                     style={{ width: '180px', height: '180px', objectFit: 'cover', border: '2px solid #ccc' }}
                 />
                 <div className="mt-2">
-                    <label htmlFor="uploadImage" className="btn btn-outline-primary btn-sm">
+                    <label htmlFor="uploadImage" className="btn btn-primary btn-sm" style={{ borderRadius:'15px' }}>
                         Change Image
                     </label>
                     <input
@@ -35,7 +35,7 @@ export const AccountCard = ({ account }) => {
                 </div>
             </div>
             <div className="card-body">
-                <h3 className="card-title">{account.firstname} {account.lastname}</h3>
+                <h3 className="card-title mb-2">{account.firstname} {account.lastname}</h3>
                 <p className="card-text">
                     <strong>Email:</strong> {account.email} <br />
                     <strong>Phone:</strong> {account.phone} <br />

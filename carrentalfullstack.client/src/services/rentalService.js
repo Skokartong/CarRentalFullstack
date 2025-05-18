@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-
 
 const axiosInstance = axios.create({
     headers: {
@@ -17,7 +15,6 @@ export async function getAvailableCars(country, startDate, endDate) {
                 endDate,
             },
         });
-
         return response.data;
     } catch (error) {
         const errorMsg = error.response?.data?.error || 'Failed to fetch available cars';
@@ -34,10 +31,7 @@ export async function getAllRentals(token) {
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to fetch rentals');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to fetch rentals');
     }
 }
 
@@ -50,26 +44,20 @@ export async function getRentalById(rentalId, token) {
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Rental not found');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Rental not found');
     }
 }
 
 export async function addRental(rental, token) {
     try {
-        const response = await axiosInstance.post('/', rental, {
+        const response = await axiosInstance.post('/api/rentals', rental, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to add rental');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to add rental');
     }
 }
 
@@ -82,10 +70,7 @@ export async function getRentalsByCountry(country, token) {
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to fetch rentals by country');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to fetch rentals by country');
     }
 }
 
@@ -98,45 +83,33 @@ export async function getRentalsByCarId(carId, token) {
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to fetch rentals by car ID');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to fetch rentals by car ID');
     }
 }
 
 export async function updateRental(rentalId, rental, token) {
     try {
-        const response = await axiosInstance.put('/api/rentals', rental, {
+        const response = await axiosInstance.put(`/api/rentals/${rentalId}`, rental, {
             headers: {
                 Authorization: `Bearer ${token}`,
-            },
-            params: {
-                rentalId: rentalId,
             },
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to update rental');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to update rental');
     }
 }
 
 export async function getRentalsByCustomerId(userId, token) {
     try {
-        const response = await axiosInstance.get(`api/rentals/user/${userId}`, {
+        const response = await axiosInstance.get(`/api/rentals/user/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to fetch rentals by user ID');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to fetch rentals by user ID');
     }
 }
 
@@ -149,9 +122,6 @@ export async function deleteRental(rentalId, token) {
         });
         return response.data;
     } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.error || 'Failed to delete rental');
-        }
-        throw new Error('No response from server');
+        throw new Error(error.response?.data?.error || 'Failed to delete rental');
     }
 }

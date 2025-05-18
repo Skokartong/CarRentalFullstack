@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-
 
 const axiosInstance = axios.create({
     headers: {
@@ -18,9 +16,13 @@ const handleError = (error) => {
     }
 };
 
-export async function getAllCars() {
+export async function getAllCars(token) {
     try {
-        const response = await axiosInstance.get('/api/cars');
+        const response = await axiosInstance.get('/api/cars', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         handleError(error);
@@ -28,7 +30,6 @@ export async function getAllCars() {
 }
 
 export async function getCarById(carId, token) {
-    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/api/cars/${carId}`, {
             headers: {
@@ -42,7 +43,6 @@ export async function getCarById(carId, token) {
 }
 
 export async function getCarsByCountry(country, token) {
-    const { token } = useAuth();
     try {
         const response = await axiosInstance.get(`/api/cars/country/${country}`, {
             headers: {
@@ -56,7 +56,6 @@ export async function getCarsByCountry(country, token) {
 }
 
 export async function addCar(car, token) {
-    const { token } = useAuth();
     try {
         const response = await axiosInstance.post('/api/cars', car, {
             headers: {
@@ -70,7 +69,6 @@ export async function addCar(car, token) {
 }
 
 export async function updateCar(car, token) {
-    const { token } = useAuth();
     try {
         const response = await axiosInstance.put('/api/cars', car, {
             headers: {
@@ -84,7 +82,6 @@ export async function updateCar(car, token) {
 }
 
 export async function deleteCar(carId, token) {
-    const { token } = useAuth();
     try {
         const response = await axiosInstance.delete(`/api/cars/${carId}`, {
             headers: {

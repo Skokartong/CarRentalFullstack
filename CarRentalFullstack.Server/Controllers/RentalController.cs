@@ -55,7 +55,7 @@ namespace CarRentalFullstack.Controllers
             return Ok(result.Value);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, customer")]
         [HttpGet("{rentalId}")]
         public async Task<ActionResult<Rental>> GetRentalById(string rentalId)
         {

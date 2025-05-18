@@ -1,0 +1,11 @@
+.rental-details-card {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+    .rental-details-card .card-img-top {
+        height: 300px;
+        object-fit: cover;
+    }

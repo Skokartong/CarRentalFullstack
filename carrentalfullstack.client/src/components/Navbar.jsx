@@ -32,17 +32,14 @@ export function Navbar() {
                         <Link to="/account">
                             <FaUserAlt /> {user.username}
                         </Link>
-                        <Link to="/book">Cars</Link>
-                        <Link to="/active-rentals">My rentals</Link>
+                        <Link to="/book">Book</Link>
+                        <Link to="/rentals">My rentals</Link>
                         <button onClick={handleLogout} className="btn logout-btn">
                             <FaSignOutAlt /> Logout
                         </button>
                     </>
                 ) : (
                     <>
-                        <Link to="/cars">
-                            Cars
-                        </Link>
                         <Link to="/about">
                             About
                         </Link>

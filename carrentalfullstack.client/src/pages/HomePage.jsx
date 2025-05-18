@@ -20,7 +20,6 @@ export function HomePage() {
             endDate: endDate,
         });
 
-        // Calling our service
         try {
             const availableCars = await getAvailableCars(country, startDate, endDate);
             console.log('Available cars:', availableCars);
