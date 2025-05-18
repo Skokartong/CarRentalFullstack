@@ -1,0 +1,12 @@
+.bg-blue {
+    background-color: #e6f2ff;
+    border-radius: 20px !important;
+}
+
+.ms-2{
+    font-size: 25px;
+}
+
+.card {
+    border-radius: 0 !important; 
+}

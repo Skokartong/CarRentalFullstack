@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaCoins } from 'react-icons/fa';
 import './CarCard.css';
 
 import mazdaCx5 from '../assets/mazdacx5.jpg';
@@ -50,8 +51,8 @@ export const CarCard = ({ car, onBook, showRegisterBanner }) => {
                 </div>
 
                 <div className="info-pairs d-flex justify-content-between mb-4">
-                    <span><strong>{car.pricePerDay} SEK</strong>/Day</span>
-                    <span><strong>{car.pricePerHour} SEK</strong>/Hour</span>
+                    <span><FaCoins className="price-icon" /><strong>{car.pricePerDay} SEK</strong>/Day</span>
+                    <span><FaCoins className="price-icon" /><strong>{car.pricePerHour} SEK</strong>/Hour</span>
                 </div>
 
                 <div className="text-center">

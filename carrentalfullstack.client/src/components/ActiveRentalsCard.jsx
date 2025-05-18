@@ -35,13 +35,12 @@ export function ActiveRentalsCard() {
     if (!rentals.length) return <div className="alert alert-info">No active rentals found.</div>;
 
     return (
-        <div className="active-rentals-container" style={{ borderRadius:'25px' }}>
+        <div className="active-rentals-container">
             <h4>My Active Rentals</h4>
             {rentals.map((rental) => (
                 <div
                     key={rental.id}
                     className="rental-card"
-                    style={{ borderRadius: '25px' }}
                     onClick={() => navigate(`/rentals/${rental.id}`)}
                 >
                     <div className="rental-info">
