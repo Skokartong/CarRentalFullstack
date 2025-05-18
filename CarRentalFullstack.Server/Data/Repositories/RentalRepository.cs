@@ -73,6 +73,7 @@ namespace CarRentalFullstack.Server.Data.Repositories
             
             return await _context.Rentals
                 .Where(r => r.FK_UserId == userId)
+                .Include(r => r.Car)
                 .ToListAsync();
         }
 

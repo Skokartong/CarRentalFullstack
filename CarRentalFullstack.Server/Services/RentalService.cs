@@ -12,6 +12,7 @@ using CarRentalFullstack.Server.Data.Repositories.IRepositories;
 using CarRentalFullstack.Server.Models.DTOs;
 using Microsoft.AspNetCore.Identity;
 using CarRentalFullstack.Server.Models;
+using System.Security.Claims;
 
 namespace CarRentalFullstack.Services
 {
@@ -21,12 +22,14 @@ namespace CarRentalFullstack.Services
         private readonly IRentalRepository _rentalRepository;
         private readonly ICarRepository _carRepository;
         private readonly ILogger<RentalService> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RentalService(IRentalRepository rentalRepository, ICarRepository carRepository, ILogger<RentalService> logger)
+        public RentalService(IRentalRepository rentalRepository, ICarRepository carRepository, ILogger<RentalService> logger, IHttpContextAccessor httpContextAccessor)
         {
             _rentalRepository = rentalRepository;
             _carRepository = carRepository;
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<ResultModel<List<Car>>> GetAvailableCarsAsync(CountryCode country, DateTime rentalStart, DateTime rentalEnd)
@@ -87,6 +90,14 @@ namespace CarRentalFullstack.Services
 
         public async Task<ResultModel<CreateUpdateRentalDTO>> AddRentalAsync(CreateUpdateRentalDTO rental)
         {
+            var userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                var error = new ErrorModel("User is not authenticated.", HttpStatusCode.Unauthorized);
+                return ResultModel<CreateUpdateRentalDTO>.Failure(error);
+            }
+
             var car = await _carRepository.GetCarByIdAsync(rental.FK_CarId);
 
             if (car == null)
@@ -120,6 +131,7 @@ namespace CarRentalFullstack.Services
                 RentalStartDate = rental.RentalStart,
                 RentalEndDate = rental.RentalEnd,
                 Price = rental.Price,
+                FK_UserId = userId,
                 Car = car
             };
 
@@ -158,6 +170,14 @@ namespace CarRentalFullstack.Services
 
         public async Task<ResultModel<CreateUpdateRentalDTO>> UpdateRentalAsync(string rentalId, CreateUpdateRentalDTO CreateUpdateRentalDTO)
         {
+            var userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                var error = new ErrorModel("User is not authenticated.", HttpStatusCode.Unauthorized);
+                return ResultModel<CreateUpdateRentalDTO>.Failure(error);
+            }
+
             var rental = await _rentalRepository.GetRentalByIdAsync(rentalId);
 
             if (rental == null)
@@ -198,6 +218,7 @@ namespace CarRentalFullstack.Services
             rental.FK_CarId = CreateUpdateRentalDTO.FK_CarId;
             rental.RentalStartDate = CreateUpdateRentalDTO.RentalStart;
             rental.RentalEndDate = CreateUpdateRentalDTO.RentalEnd;
+            rental.FK_UserId = userId;
 
             // Recalculate price based on the new rental period
             rental.Price = CreateUpdateRentalDTO.CalculatePrice(car);

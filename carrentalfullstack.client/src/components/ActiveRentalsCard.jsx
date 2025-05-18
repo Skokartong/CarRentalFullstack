@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { getRentalsByCustomerId } from '../services/rentalService';
 import { getUserIdFromToken } from '../utils/jwt';
 import { useNavigate } from 'react-router-dom';
+import { FaCoins } from 'react-icons/fa';
 import './ActiveRentalsCard.css';
 
 export function ActiveRentalsCard() {
@@ -34,24 +35,26 @@ export function ActiveRentalsCard() {
     if (!rentals.length) return <div className="alert alert-info">No active rentals found.</div>;
 
     return (
-        <div className="active-rentals-container">
+        <div className="active-rentals-container" style={{ borderRadius:'25px' }}>
             <h4>My Active Rentals</h4>
-            <ul className="list-group">
-                {rentals.map((rental) => (
-                    <li
-                        key={rental.id}
-                        className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                        onClick={() => navigate(`/rentals/${rental.id}`)}
-                        style={{ cursor: 'pointer' }}
-                    >
-                        <div>
-                            <strong>{rental.car?.brand} {rental.car?.model}</strong><br />
-                            {new Date(rental.rentalStart).toLocaleDateString()} {new Date(rental.rentalEnd).toLocaleDateString()}
-                        </div>
-                        <span className="badge bg-primary rounded-pill">View</span>
-                    </li>
-                ))}
-            </ul>
+            {rentals.map((rental) => (
+                <div
+                    key={rental.id}
+                    className="rental-card"
+                    style={{ borderRadius: '25px' }}
+                    onClick={() => navigate(`/rentals/${rental.id}`)}
+                >
+                    <div className="rental-info">
+                        <strong>{rental.car.brand} {rental.car?.model}</strong>
+                        <span>{rental.rentalStart} - {rental.rentalEnd}</span>
+                        <span className="rental-price">
+                            <FaCoins className="price-icon" />
+                            <strong>{rental.price} SEK</strong>
+                        </span>
+                    </div>
+                    <div className="rental-badge">View</div>
+                </div>
+            ))}
         </div>
     );
 }

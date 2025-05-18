@@ -2,7 +2,8 @@
     display: flex;
     padding: 20px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    height: 90vh;
     flex-wrap: wrap; 
 }
 
@@ -11,3 +12,8 @@
     min-width: 300px;
     max-width: 600px;
 }
+
+body {
+    background: linear-gradient(to bottom right, #e6f2fb, #cce4f7, #a3d3f2);
+}
+

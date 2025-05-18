@@ -116,7 +116,7 @@ namespace CarRentalFullstack.Controllers
         }
 
         [Authorize(Roles = "admin, customer")]
-        [HttpPut]
+        [HttpPut("{rentalId}")]
         public async Task<IActionResult> UpdateRental(string rentalId, [FromBody] CreateUpdateRentalDTO rental)
         {
             var result = await _rentalService.UpdateRentalAsync(rentalId, rental);
