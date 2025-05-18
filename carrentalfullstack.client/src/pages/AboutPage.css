@@ -3,10 +3,16 @@
     border-radius: 20px !important;
 }
 
-.ms-2{
-    font-size: 25px;
+h1{
+    font-family: 'Arial', sans-serif;
 }
 
-.card {
-    border-radius: 0 !important; 
+.icon{
+    font-size: 25px;
+    margin-right: 5px;
 }
+
+.lead {
+    border-bottom: 1px solid #e0e0e0;
+}
+

@@ -1,6 +1,5 @@
 .account-page-container {
     display: flex;
-    padding: 20px;
     justify-content: center;
     align-items: center;
     height: 90vh;
@@ -9,6 +8,9 @@
 
 .account-column {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 300px;
     max-width: 600px;
 }

@@ -12,23 +12,20 @@ export function AboutPage() {
         <div className="container py-4 about-page">
             <div className="text-center mb-5">
                 <h1 className="display-4">About Us</h1>
-                <p className="lead">Your trusted partner for safe, flexible, and convenient car rentals</p>
+                <p className="lead">POQ is your trusted partner for safe, flexible, and convenient car rentals.</p>
             </div>
 
-            <div className="row text-center mb-5">
-                <div className="card col-md-4">
-                    <i className="bi bi-shield-check display-4 text-primary mb-3"></i>
-                    <h5><AiFillSafetyCertificate/> Safety First</h5>
+            <div className="row text-center mb-4">
+                <div className="col-md-4">
+                    <h5><AiFillSafetyCertificate className="icon text-primary" />Safety First</h5>
                     <p>Our vehicles undergo regular maintenance and strict safety inspections.</p>
                 </div>
-                <div className="card col-md-4">
-                    <i className="bi bi-speedometer2 display-4 text-success mb-3"></i>
-                    <h5><LuBicepsFlexed/> Flexible Options</h5>
+                <div className="col-md-4">
+                    <h5><LuBicepsFlexed className="icon text-success"/> Flexible Options</h5>
                     <p>Rent by the hour, day, or week. Choose what suits your journey best.</p>
                 </div>
-                <div className="card col-md-4">
-                    <i className="bi bi-people-fill display-4 text-warning mb-3"></i>
-                    <h5><FaHandHoldingHeart/> Customer-Centric</h5>
+                <div className="col-md-4">
+                    <h5><FaHandHoldingHeart className="icon text-danger"/> Customer-Centric</h5>
                     <p>We're here for you with transparency, support, and friendly service.</p>
                 </div>
             </div>
