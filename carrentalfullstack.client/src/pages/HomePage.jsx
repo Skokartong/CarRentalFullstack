@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAvailableCars } from '../services/rentalService';
 import { SearchForm } from '../components/SearchForm';
+import { Footer } from '../components/Footer';
 import './HomePage.css';
 
 export function HomePage() {
@@ -53,6 +54,7 @@ export function HomePage() {
                     onSubmit={handleSubmit}
                 />
             </div>
+            <Footer></Footer>
         </div>
     );
 }

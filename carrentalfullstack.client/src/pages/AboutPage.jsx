@@ -16,15 +16,15 @@ export function AboutPage() {
             </div>
 
             <div className="row text-center mb-4">
-                <div className="col-md-4">
+                <div className="card col-md-4">
                     <h5><AiFillSafetyCertificate className="icon text-primary" />Safety First</h5>
                     <p>Our vehicles undergo regular maintenance and strict safety inspections.</p>
                 </div>
-                <div className="col-md-4">
+                <div className="card col-md-4">
                     <h5><LuBicepsFlexed className="icon text-success"/> Flexible Options</h5>
                     <p>Rent by the hour, day, or week. Choose what suits your journey best.</p>
                 </div>
-                <div className="col-md-4">
+                <div className="card col-md-4">
                     <h5><FaHandHoldingHeart className="icon text-danger"/> Customer-Centric</h5>
                     <p>We're here for you with transparency, support, and friendly service.</p>
                 </div>
