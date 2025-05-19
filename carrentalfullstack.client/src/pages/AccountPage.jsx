@@ -29,7 +29,7 @@ export function AccountPage() {
     if (!account) {
         return (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
-                <Spinner animation="border" variant="primary" />
+                <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }} />
             </div>
         );
     }
