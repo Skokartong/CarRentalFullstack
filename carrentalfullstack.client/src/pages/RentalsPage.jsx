@@ -4,6 +4,7 @@ import { getRentalsByCustomerId } from '../services/rentalService';
 import { useAuth } from '../context/AuthContext';
 import { getUserIdFromToken } from '../utils/jwt';
 import { Button, Card, Alert, Spinner } from 'react-bootstrap';
+import './styles/RentalsPage.css';
 
 export function RentalsPage() {
     const { token } = useAuth();
@@ -40,15 +41,16 @@ export function RentalsPage() {
     if (error) return <Alert variant="danger">{error}</Alert>;
 
     return (
+        <div className="rental-page-wrapper">
         <div className="container py-4">
-            <h3 className="text-center mb-4">My Rentals</h3>
+            <h2 className="text-center mb-4">My Rentals</h2>
             {rentals.length === 0 ? (
                 <Alert variant="info" className="text-center">You have no rentals yet.</Alert>
             ) : (
                 <div className="row">
                     {rentals.map(rental => (
                         <div className="col-md-6 col-lg-4 mb-4" key={rental.id}>
-                            <Card className="h-100 shadow-sm">
+                            <Card className="shadow-sm">
                                 <Card.Body>
                                     <Card.Title>{rental.car?.brand} {rental.car?.model}</Card.Title>
                                     <Card.Text>
@@ -69,6 +71,7 @@ export function RentalsPage() {
                     ))}
                 </div>
             )}
+            </div>
         </div>
     );
 }

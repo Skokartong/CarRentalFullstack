@@ -1,0 +1,13 @@
+.rental-page-wrapper {
+    background: linear-gradient(135deg, #e4eef5, #FFFFFF);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 90vh;
+}
+
+h3.text-center {
+    border-bottom: 1px solid #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}

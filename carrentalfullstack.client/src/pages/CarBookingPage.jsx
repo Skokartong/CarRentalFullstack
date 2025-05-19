@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { CarCard } from '../components/CarCard';
 import { RentalFormModal } from '../components/RentalFormModal';
 import { useNavigate } from 'react-router-dom';
+import './styles/CarBookingPage.css';
 
 export function CarBookingPage() {
     const { token } = useAuth();
@@ -124,6 +125,6 @@ export function CarBookingPage() {
                     />
                 </>
             )}
-        </div>
+            </div>
     );
 }

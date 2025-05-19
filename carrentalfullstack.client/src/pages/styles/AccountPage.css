@@ -5,6 +5,10 @@
     gap: 5rem;
     height: 90vh;
     flex-wrap: wrap;
+    background: linear-gradient(135deg, #e4eef5, #FFFFFF);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .account-column {
@@ -14,4 +18,16 @@
     min-width: 300px;
     max-width: 500px;
     flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+    .account-page-container {
+        gap: 2rem; 
+        height: auto; 
+    }
+
+    .account-column {
+        max-width: 100%; 
+        margin: 1rem;
+    }
 }
