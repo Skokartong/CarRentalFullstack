@@ -2,7 +2,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 export const PitchCard = () => {
     return (
-        <div className="col-12 col-md-6 py-5 d-flex justify-content-center align-items-center"
+        <div className="col-12 col-md-6 py-5 d-flex justify-content-center align-items-center vh-90"
             style={{
                 backgroundImage: 'url("src/assets/roadtrip.jpg")',
                 backgroundSize: 'cover',

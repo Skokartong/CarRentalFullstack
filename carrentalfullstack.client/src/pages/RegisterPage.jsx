@@ -49,7 +49,7 @@ export const RegisterPage = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <PitchCard />
+                    <PitchCard />
                 <div className="col-12 col-md-6 py-5 d-flex align-items-center justify-content-center">
                     <RegisterForm
                         formData={formData}
