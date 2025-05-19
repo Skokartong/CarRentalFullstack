@@ -2,4 +2,10 @@
     background-color: #f9f9f9 !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border: none !important;
+    padding: 15px;
+}
+
+.card-title{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
 }

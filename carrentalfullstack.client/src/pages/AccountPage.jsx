@@ -28,7 +28,7 @@ export function AccountPage() {
     if (!account) return <div>Loading...</div>;
 
     return (
-        <div className="account-page-container">
+        <div className="account-page-container py-3">
             <div className="account-column">
                 <AccountCard account={account} />
             </div>

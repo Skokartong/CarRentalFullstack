@@ -36,7 +36,7 @@ export function ActiveRentalsCard() {
 
     return (
         <div className="active-rentals-container">
-            <h4>My Active Rentals</h4>
+            <h4>Active Rentals</h4>
             {rentals.map((rental) => (
                 <div
                     key={rental.id}

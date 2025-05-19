@@ -14,7 +14,7 @@ export const AccountCard = ({ account }) => {
     };
 
     return (
-        <div className="card p-3 mb-5 bg-white rounded-lg" style={{ width: '24rem', borderRadius: '20px' }}>
+        <div className="card bg-white rounded-lg" style={{ width: '24rem', borderRadius: '20px' }}>
             <div className="text-center">
                 <img
                     src={image}

@@ -4,6 +4,8 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 20px !important;
     max-width: 800px;
+    max-height: 650px;
+    overflow-y: auto;
     margin: 2rem auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -32,6 +34,11 @@
         transform: translateY(-2px);
     }
 
+h4{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
 .rental-info {
     display: flex;
     flex-direction: column;
@@ -55,7 +62,7 @@
 }
 
 .rental-price {
-    color: #007bff; 
+    color: #007bff;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -67,4 +74,3 @@
     color: #007bff;
     font-size: 1.1rem;
 }
-

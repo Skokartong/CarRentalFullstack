@@ -82,6 +82,9 @@ export function AvailableCarsPage() {
 
         try {
             const newRental = await addRental(rental, token);
+
+            console.log('newRental', newRental);
+
             navigate(`/rentals/${newRental.id}`);
         } catch (err) {
             alert(err.message || 'Failed to book rental');
