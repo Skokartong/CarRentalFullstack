@@ -4,7 +4,7 @@ import { getRentalsByCustomerId } from '../services/rentalService';
 import { getUserIdFromToken } from '../utils/jwt';
 import { useNavigate } from 'react-router-dom';
 import { FaCoins } from 'react-icons/fa';
-import './ActiveRentalsCard.css';
+import './styles/ActiveRentalsCard.css';
 
 export function ActiveRentalsCard() {
     const { token } = useAuth();

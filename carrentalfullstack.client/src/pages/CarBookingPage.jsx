@@ -65,7 +65,7 @@ export function CarBookingPage() {
 
     return (
         <div className="container py-4">
-            <h2 className="text-center mb-4">Book a Car</h2>
+            <h2 className="text-center mb-4">Car Booking</h2>
 
             {showLoginAlert && (
                 <div className="alert alert-warning text-center position-fixed bottom-0 start-0 end-0 m-3 z-3">

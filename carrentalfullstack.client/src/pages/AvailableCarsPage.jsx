@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import './AvailableCarsPage.css';
+import './styles/AvailableCarsPage.css';
 import { CarCard } from '../components/CarCard';
 import { getAvailableCars } from '../services/rentalService';
 import { useAuth } from '../context/AuthContext';

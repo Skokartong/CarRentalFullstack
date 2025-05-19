@@ -1,5 +1,5 @@
 import React from 'react';
-import './LoginForm.css';
+import './styles/LoginForm.css';
 
 export const LoginForm = ({ username, password, onUsernameChange, onPasswordChange, onSubmit }) => {
     return (

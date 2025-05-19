@@ -3,7 +3,8 @@ import { getAccount } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import { AccountCard } from '../components/AccountCard';
 import { ActiveRentalsCard } from '../components/ActiveRentalsCard';
-import './AccountPage.css';
+import { Spinner, Alert } from 'react-bootstrap';
+import './styles/AccountPage.css';
 
 export function AccountPage() {
     const [account, setAccount] = useState(null);
@@ -25,7 +26,13 @@ export function AccountPage() {
     }, []);
 
     if (error) return <div>{error}</div>;
-    if (!account) return <div>Loading...</div>;
+    if (!account) {
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
+                <Spinner animation="border" variant="primary" />
+            </div>
+        );
+    }
 
     return (
         <div className="account-page-container py-3">

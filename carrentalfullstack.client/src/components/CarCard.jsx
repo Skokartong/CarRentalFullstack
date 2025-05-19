@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaCoins } from 'react-icons/fa';
-import './CarCard.css';
+import './styles/CarCard.css';
 
 import mazdaCx5 from '../assets/mazdacx5.jpg';
 import landroverdefender from '../assets/landroverdefender.jpg';

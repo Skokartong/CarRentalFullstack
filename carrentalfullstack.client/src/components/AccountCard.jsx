@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultImage from '../assets/carola.jpg';
-import './AccountCard.css';
+import './styles/AccountCard.css';
 
 export const AccountCard = ({ account }) => {
     const [image, setImage] = React.useState(defaultImage);

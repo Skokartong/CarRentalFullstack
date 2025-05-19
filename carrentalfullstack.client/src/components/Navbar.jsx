@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaUserPlus, FaBars, FaTimes, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
-import './Navbar.css';
+import './styles/Navbar.css';
 import poqLogo from '../assets/poq.png';
 import { useAuth } from '../context/AuthContext';
 

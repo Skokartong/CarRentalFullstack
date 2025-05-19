@@ -5,7 +5,7 @@ import s90 from '../assets/s90red.jpg';
 import volvov60 from '../assets/volvov60.jpg';
 import volvoxc40 from '../assets/volvoxc40.jpg';
 import wolkswagengolf from '../assets/wolkswagengolf.jpg';
-import './RentalDetailsCard.css';
+import './styles/RentalDetailsCard.css';
 
 const carImages = {
     'CX-5': mazdaCx5,

@@ -5,7 +5,7 @@ import { RegisterForm } from '../components/RegisterForm';
 import { PitchCard } from '../components/PitchCard';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './RegisterPage.css';
+import './styles/RegisterPage.css';
 
 export const RegisterPage = () => {
     const { login } = useAuth();

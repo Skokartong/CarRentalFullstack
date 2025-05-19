@@ -5,7 +5,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { FaHandHoldingHeart } from "react-icons/fa6";
 import { LuBicepsFlexed } from "react-icons/lu";
-import './AboutPage.css';
+import './styles/AboutPage.css';
 
 export function AboutPage() {
     return (
