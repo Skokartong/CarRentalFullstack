@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles/LoginForm.css';
+import { Link } from 'react-router-dom';
 
 export const LoginForm = ({ username, password, onUsernameChange, onPasswordChange, onSubmit }) => {
     return (
@@ -58,9 +59,9 @@ export const LoginForm = ({ username, password, onUsernameChange, onPasswordChan
                                     </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">
                                         Not a member?{' '}
-                                        <a href="#!" className="link-danger">
+                                        <Link to="/register" className="link-danger">
                                             Register
-                                        </a>
+                                        </Link>
                                     </p>
                                 </div>
                             </form>
