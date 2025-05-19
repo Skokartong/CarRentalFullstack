@@ -1,7 +1,8 @@
 
-.about-page-wrapper{
-    height:90vh;
-    width:100vw;
+.about-page-wrapper {
+    height: 90vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #f4f4f9, #ffffff);
 }
 
 h1.display-4 {
@@ -41,10 +42,9 @@ p a.ms-2{
 
 
 .contact-card {
-    background: linear-gradient(135deg, #ddeff6, #ffffff);
+    background: linear-gradient(135deg, #cadcfb, #ffffff);
     padding: 2rem !important;
     border: none;
-    border-radius: 20px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     transition: box-shadow 0.3s ease;
 }

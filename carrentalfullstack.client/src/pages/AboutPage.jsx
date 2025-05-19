@@ -14,7 +14,7 @@ export function AboutPage() {
             <div className="container py-4 about-page">
                 <div className="text-center mb-5">
                     <h1 className="display-4">About Us</h1>
-                    <p className="lead"><span>POQ</span> is your trusted partner for safe, flexible, and convenient car rentals.</p>
+                    <p className="lead">- <span>POQ</span> is your trusted partner for safe, flexible, and convenient car rentals.</p>
                 </div>
 
                 <div className="row g-4 mb-4">
@@ -38,7 +38,7 @@ export function AboutPage() {
                     </div>
                 </div>
 
-                <div className="card contact-card mt-5">
+                <div className="card contact-card mt-5 rounded-4">
                     <div className="d-flex flex-column flex-md-row justify-content-between">
                         <div className="left">
                             <h3>Contact Us</h3>

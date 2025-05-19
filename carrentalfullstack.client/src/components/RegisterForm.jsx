@@ -15,6 +15,7 @@ export const RegisterForm = ({ formData, onChange, onSubmit, error }) => {
                     {[
                         { name: 'username', placeholder: 'Username', type: 'text' },
                         { name: 'password', placeholder: 'Password', type: 'password' },
+                        { name: 'confirmPassword', placeholder: 'Confirm Password', type: 'password' },
                         { name: 'email', placeholder: 'Email', type: 'email' },
                         { name: 'firstname', placeholder: 'First Name', type: 'text' },
                         { name: 'lastname', placeholder: 'Last Name', type: 'text' },
