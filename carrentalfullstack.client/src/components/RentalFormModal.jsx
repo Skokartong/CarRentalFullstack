@@ -31,7 +31,7 @@ export const RentalFormModal = ({ show, handleClose, carId }) => {
             setSuccess('Rental created successfully!');
             setTimeout(() => {
                 handleClose();
-                navigate(`/rentals/${result.id}`);
+                navigate(`/rentals`);
             }, 1200);
         } catch (err) {
             setError(err.message);
