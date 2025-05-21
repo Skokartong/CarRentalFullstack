@@ -22,7 +22,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./CarRentalFullstack.Server
+          context: .
           file: ./CarRentalFullstack.Server/Dockerfile
           push: true
           tags: advamanda/carrentalfullstack:latest
+
+          
