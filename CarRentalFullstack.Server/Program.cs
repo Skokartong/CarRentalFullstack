@@ -33,15 +33,12 @@ namespace CarRentalFullstack
                                       .AllowAnyHeader());
             });
 
-
             // Load environment variables needed for Azure AD authentication
             string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
             string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
             string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET");
             string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY");
             string audience = Environment.GetEnvironmentVariable("AZURE_AUDIENCE");
-
-            Console.WriteLine($"TENANTID: { tenantId}");
 
             // Configure Entity Framework Core with SQL Server
             builder.Services.AddDbContext<CarRentalContext>(options =>
