@@ -47,10 +47,12 @@ export const RegisterPage = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="register-container container-fluid" style={{ height: '90vh' }}>
             <div className="row">
+                <div className="pitch-background col-12 col-md-6 py-5 d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
                     <PitchCard />
-                <div className="col-12 col-md-6 py-5 d-flex align-items-center justify-content-center">
+                </div>
+                <div className="col-12 col-md-6 py-5 d-flex align-items-center justify-content-center" style={{ height: '90vh' }}>
                     <RegisterForm
                         formData={formData}
                         onChange={handleChange}

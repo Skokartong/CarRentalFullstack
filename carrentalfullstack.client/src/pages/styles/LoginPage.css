@@ -1,0 +1,5 @@
+.login-container {
+    background-image: url('/src/assets/vintage-car.jpg'), linear-gradient(135deg, #e4eef5, #FFFFFF);
+    background-size: cover;
+    background-position: center;
+}

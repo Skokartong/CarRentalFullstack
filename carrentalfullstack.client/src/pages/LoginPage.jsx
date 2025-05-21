@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 import { LoginForm } from '../components/LoginForm';
+import './styles/LoginPage.css';
 
 export const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -24,12 +25,14 @@ export const LoginPage = () => {
     };
 
     return (
+        <div className="login-container d-flex flex-column align-items-center justify-content-center" style={{ height: '90vh' }}>
         <LoginForm
             username={username}
             password={password}
             onUsernameChange={setUsername}
             onPasswordChange={setPassword}
             onSubmit={handleSubmit}
-        />
+            />
+        </div>
     );
 };

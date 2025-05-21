@@ -38,7 +38,7 @@ export function HomePage() {
     };
 
     return (
-        <div className="homepage">
+        <div className="home-container d-flex flex-column align-items-center justify-content-center" style={{ height: '90vh' }}>
             <div className="overlay">
                 <h1 class="h1-tag">POQ</h1>
                 <p>Car rentals <span>anytime, anywhere, globally.</span></p>

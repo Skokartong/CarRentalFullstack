@@ -1,15 +1,10 @@
-.homepage {
-    background-image: url('/src/assets/friendscar.jpg'); 
+.home-container {
+    background-image: url('/src/assets/friendscar.jpg'), linear-gradient(135deg, #e4eef5, #FFFFFF);
     background-size: cover;
     background-position: center;
     font-family: "Poppins", sans-serif;
-    height: 90vh;
     position: relative;
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .overlay {
@@ -23,7 +18,7 @@
 
 .h1-tag{
     font-family: 'Poppins', sans-serif;
-    font-weight:200;
+    font-weight: 200;
 }
 
 .search-form {
@@ -33,29 +28,29 @@
     gap: 0.5rem;
 }
 
-    .search-form input,
-    .search-form select,
-    .search-form button {
-        padding: 0.6rem;
-        font-size: 1rem;
-        border-radius: 15px;
-        border: none;
-    }
+.search-form input,
+.search-form select,
+.search-form button {
+    padding: 0.6rem;
+    font-size: 1rem;
+    border-radius: 15px;
+    border: none;
+}
 
-    p{
-        font-size: 20px;
-    }
+p {
+    font-size: 20px;
+}
 
 span {
     font-weight: 600;
 }
 
-    .search-form button {
-        background-color: #3d87f1;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.search-form button {
+   background-color: #3d87f1;
+   color: white;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
 
 .error-message {
     color: #ffcccc;

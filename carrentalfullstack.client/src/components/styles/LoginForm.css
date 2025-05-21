@@ -1,23 +1,11 @@
-*{
-    font-family: "Poppins", sans-serif;
-}
-
-.btn{
-    border-radius:15px !important;
-}
-
-h2{
+h2 {
    font-size:2.7em;
-}
-
-.vh-90 {
-    height: 90vh !important;
-    background-color: #69a2d3 !important;
 }
 
 .card-container {
     background-color: #f9f9f9;
-    border-radius: 15px; 
-    padding: 40px; 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    padding: 2rem;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }

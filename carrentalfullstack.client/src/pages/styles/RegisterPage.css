@@ -1,5 +1,5 @@
-.text-container{
-    background-color:white;
-    padding: 2em;
-    border-radius: 15px;
+.pitch-background {
+    background-image: url('/src/assets/roadtrip.jpg'), linear-gradient(135deg, #e4eef5, #FFFFFF);
+    background-size: cover;
+    background-position: center;
 }
