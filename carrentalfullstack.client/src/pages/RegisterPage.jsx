@@ -13,6 +13,7 @@ export const RegisterPage = () => {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
+        confirmPassword: '',
         email: '',
         firstname: '',
         lastname: '',
