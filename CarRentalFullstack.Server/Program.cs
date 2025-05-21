@@ -1,20 +1,21 @@
 
+using CarRentalFullstack.Server.Data;
 using CarRentalFullstack.Server.Data.Repositories;
 using CarRentalFullstack.Server.Data.Repositories.IRepositories;
-using CarRentalFullstack.Services;
-using CarRentalFullstack.Services.IServices;
-using Serilog;
-using Serilog.AspNetCore;
-using CarRentalFullstack.Server.Data;
-using Microsoft.EntityFrameworkCore;
-using DotNetEnv;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using CarRentalFullstack.Server.Models;
-using Microsoft.AspNetCore.Identity;
 using CarRentalFullstack.Server.Services;
 using CarRentalFullstack.Server.Services.IServices;
+using CarRentalFullstack.Services;
+using CarRentalFullstack.Services.IServices;
+using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using Serilog.AspNetCore;
+using System.Collections;
+using System.Text;
 
 namespace CarRentalFullstack
 {
@@ -32,14 +33,15 @@ namespace CarRentalFullstack
                                       .AllowAnyHeader());
             });
 
-            Env.Load();
 
             // Load environment variables needed for Azure AD authentication
-            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID") ?? throw new ArgumentNullException("TenantId missing");
-            string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID") ?? throw new ArgumentNullException("ClientId missing");
-            string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET") ?? throw new ArgumentNullException("ClientSecret missing");
-            string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY") ?? throw new ArgumentNullException("Authority missing");
-            string audience = Environment.GetEnvironmentVariable("AZURE_AUDIENCE") ?? throw new ArgumentNullException("Audience missing");
+            string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
+            string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
+            string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET");
+            string authority = Environment.GetEnvironmentVariable("AZURE_AUTHORITY");
+            string audience = Environment.GetEnvironmentVariable("AZURE_AUDIENCE");
+
+            Console.WriteLine($"TENANTID: { tenantId}");
 
             // Configure Entity Framework Core with SQL Server
             builder.Services.AddDbContext<CarRentalContext>(options =>
@@ -109,6 +111,9 @@ namespace CarRentalFullstack
 
             var app = builder.Build();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -130,6 +135,8 @@ namespace CarRentalFullstack
             app.UseCors("AllowAll");
 
             app.MapControllers();
+
+            app.MapFallbackToFile("/index.html");
 
             app.Run();
         }

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  carrentalfullstack.server:
+    build:
+      context: .
+      dockerfile: CarRentalFullstack.Server/Dockerfile
+    ports:
+      - "8080"
+    env_file:
+      - CarRentalFullstack.Server/.env

@@ -1,6 +1,6 @@
 @CarRentalFullstack.Server_HostAddress = http://localhost:5211
 
-GET {{CarRentalFullstack.Server_HostAddress}}/weatherforecast/
+GET {{CarRentalFullstack.Server_HostAddress}}/api/
 Accept: application/json
 
 ###

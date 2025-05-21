@@ -12,4 +12,7 @@
     <None Remove="src\services\api\**" />
     <TypeScriptConfiguration Remove="src\services\api\**" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".vscode\launch.json" />
+  </ItemGroup>
 </Project>
