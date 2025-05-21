@@ -125,6 +125,6 @@ export function CarBookingPage() {
                     />
                 </>
             )}
-            </div>
+        </div>
     );
 }

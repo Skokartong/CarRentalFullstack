@@ -42,7 +42,7 @@ export const RegisterForm = ({ formData, onChange, onSubmit, error }) => {
                         <button
                             type="submit"
                             className="btn btn-primary py-2 rounded-lg"
-                            style={{ maxWidth: '300px', width: '100%' }}
+                            style={{ maxWidth: '300px', width: '100%', borderRadius: '15px'}}
                         >
                             Register
                         </button>

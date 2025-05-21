@@ -45,10 +45,10 @@ export const LoginForm = ({ username, password, onUsernameChange, onPasswordChan
                     <a href="#!" className="text-body">Forgot password?</a>
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center mt-2 pt-2">
+                <div className="d-flex justify-content-between align-items-center pt-2 rounded-lg">
                     <button
                         type="submit"
-                        className="btn btn-primary btn-lg rounded-lg"
+                        className="btn btn-primary btn-lg mt-2 mb-0 rounded-lg"
                         style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem', borderRadius: '15px' }}
                     >
                         Login
