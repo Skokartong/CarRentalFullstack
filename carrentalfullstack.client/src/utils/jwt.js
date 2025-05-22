@@ -12,15 +12,19 @@ export function getUserIdFromToken(token) {
         return null;
     }
 }
-
 export function getUserRoleFromToken(token) {
-    if (!token) return null;
+    if (!token) return [];
 
     try {
         const decoded = jwtDecode(token);
-        return decoded.role || null;
+        const roleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+        const roles = decoded[roleClaim];
+
+        if (Array.isArray(roles)) return roles;
+        if (roles) return [roles];
+        return [];
     } catch (error) {
         console.error("Failed to decode JWT token:", error);
-        return null;
+        return [];
     }
 }

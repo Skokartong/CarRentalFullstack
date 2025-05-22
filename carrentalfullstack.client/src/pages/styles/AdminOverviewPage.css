@@ -1,0 +1,10 @@
+.admin-container {
+    background-image: url('/src/assets/forest.jpeg'), linear-gradient(135deg, #e4eef5, #FFFFFF);
+    background-size: cover;
+    background-position: center;
+}
+
+.admin-title{
+    font-weight: 200;
+    border-bottom: 1px solid grey;
+}

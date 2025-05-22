@@ -79,7 +79,7 @@ export function CarBookingPage() {
             )}
 
             {loading ? (
-                <div className="d-flex justify-content-center align-items-center" style={{ height: '60vh' }}>
+                <div className="d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
                     <div className="spinner-border text-primary" style={{ width: '5rem', height: '5rem' }} role="status">
                     </div>
                 </div>

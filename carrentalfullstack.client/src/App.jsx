@@ -12,6 +12,9 @@ import { Layout } from './components/Layout';
 import { AvailableCarsPage } from './pages/AvailableCarsPage';
 import { RentalDetailsPage } from './pages/RentalDetailsPage';
 import { RentalsPage } from './pages/RentalsPage';
+import { RentalsAdminPage } from './pages/RentalsAdminPage';
+import { CarAdminPage } from './pages/CarAdminPage';
+import { AdminOverviewPage } from './pages/AdminOverviewPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -26,6 +29,9 @@ function App() {
                         <Route path="/book" element={<CarBookingPage />} />
                         <Route path="/rentals" element={<RentalsPage />} />
                         <Route path="/rentals/:rentalId" element={<RentalDetailsPage />} />
+                        <Route path="/admin" element={<AdminOverviewPage />} />
+                        <Route path="/admin/rentals" element={<RentalsAdminPage />} />
+                        <Route path="/admin/cars" element={<CarAdminPage />} />
                         <Route path="/available-cars" element={<AvailableCarsPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />

@@ -33,6 +33,8 @@ namespace CarRentalFullstack
                                       .AllowAnyHeader());
             });
 
+            Env.Load();
+
             // Load environment variables needed for Azure AD authentication
             string tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
             string clientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");

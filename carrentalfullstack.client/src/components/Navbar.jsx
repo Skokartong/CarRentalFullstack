@@ -4,15 +4,15 @@ import { FaSignInAlt, FaUserPlus, FaBars, FaTimes, FaSignOutAlt, FaUserAlt } fro
 import './styles/Navbar.css';
 import poqLogo from '../assets/poq.png';
 import { useAuth } from '../context/AuthContext';
+import { getUserRoleFromToken } from '../utils/jwt';
 
 export function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const { user, logout } = useAuth();
+    const { user, token, logout } = useAuth();
     const navigate = useNavigate();
+    const roles = getUserRoleFromToken(token);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+    const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const handleLogout = () => {
         logout();
@@ -26,11 +26,21 @@ export function Navbar() {
             </Link>
 
             <div className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+                {token && roles.includes('admin') && (
+                    <>
+                        <Link to="/admin">Dashboard</Link>
+                        <Link to="/admin/cars">Manage Cars</Link>
+                        <Link to="/admin/rentals">Manage Rentals</Link>
+                        <button onClick={handleLogout} className="btn logout-btn">
+                            <FaSignOutAlt /> Logout
+                        </button>
+                    </>
+                )}
 
-                {user ? (
+                {token && !roles.includes('admin') && (
                     <>
                         <Link to="/account">
-                            <FaUserAlt /> {user.username}
+                            <FaUserAlt /> {user?.username}
                         </Link>
                         <Link to="/book">Book</Link>
                         <Link to="/rentals">My rentals</Link>
@@ -38,11 +48,11 @@ export function Navbar() {
                             <FaSignOutAlt /> Logout
                         </button>
                     </>
-                ) : (
+                )}
+
+                {!token && (
                     <>
-                        <Link to="/about">
-                            About
-                        </Link>
+                        <Link to="/about">About</Link>
                         <Link to="/login" className="btn login-btn">
                             <FaSignInAlt /> Login
                         </Link>

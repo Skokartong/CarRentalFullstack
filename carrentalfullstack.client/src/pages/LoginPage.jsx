@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 import { LoginForm } from '../components/LoginForm';
+import { getUserRoleFromToken } from '../utils/jwt';
 import './styles/LoginPage.css';
 
 export const LoginPage = () => {
@@ -18,7 +19,16 @@ export const LoginPage = () => {
             const response = await login({ username, password }); 
             setToken(response.token); 
             console.log("Login successful", response);
-            navigate('/account');
+
+
+            const roles = getUserRoleFromToken(response.token);
+
+            if (roles.includes('admin')) {
+                navigate('/admin');
+            } else {
+                navigate('/account');
+            }
+
         } catch (err) {
             console.error("Login failed", err.message);
         }
