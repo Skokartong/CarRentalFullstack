@@ -5,7 +5,7 @@
     gap: 5rem;
     height: 90vh;
     flex-wrap: wrap;
-    background: linear-gradient(135deg, #e4eef5, #FFFFFF);
+    background-image: url('/src/assets/road.jpeg'), linear-gradient(135deg, #e4eef5, #FFFFFF);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

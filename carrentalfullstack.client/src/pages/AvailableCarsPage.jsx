@@ -76,8 +76,8 @@ export function AvailableCarsPage() {
         const rental = {
             userId: user.id,
             carId: carId,
-            startDate,
-            endDate
+            rentalStartDate: startDate,
+            rentalEndDate: endDate
         };
 
         try {
