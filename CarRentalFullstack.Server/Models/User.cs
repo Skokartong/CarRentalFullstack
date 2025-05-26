@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CarRentalFullstack.Server.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace CarRentalFullstack.Server.Models

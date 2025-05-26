@@ -13,6 +13,8 @@ export function RentalsAdminPage() {
         id: '',
         rentalStart: '',
         rentalEnd: '',
+        firstname: '',
+        lastname: '',
         carId: '',
     });
     const { token } = useAuth();
@@ -36,8 +38,8 @@ export function RentalsAdminPage() {
     const openEditModal = (rental) => {
         setCurrentRental({
             id: rental.id,
-            rentalStart: rental.rentalStart?.slice(0, 10) || '',
-            rentalEnd: rental.rentalEnd?.slice(0, 10) || '',
+            rentalStart: rental.rentalStart,
+            rentalEnd: rental.rentalEnd,
             carId: rental.car?.id || '',
         });
         setShowModal(true);

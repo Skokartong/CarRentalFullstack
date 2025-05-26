@@ -17,8 +17,8 @@ export function HomePage() {
 
         const query = new URLSearchParams({
             country: country,
-            startDate: startDate,
-            endDate: endDate,
+            startDate: rentalStartDate,
+            endDate: rentalEndDate,
         });
 
         try {

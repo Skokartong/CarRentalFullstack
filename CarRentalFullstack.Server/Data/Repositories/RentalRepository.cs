@@ -86,6 +86,7 @@ namespace CarRentalFullstack.Server.Data.Repositories
 
             return await _context.Rentals
                 .Include (r => r.Car)
+                .Include(r => r.User)
                 .ToListAsync();
         }
     }

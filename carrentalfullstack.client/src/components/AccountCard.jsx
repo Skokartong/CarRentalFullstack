@@ -13,6 +13,11 @@ export const AccountCard = ({ account }) => {
         }
     };
 
+    const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+        return new Date(dateStr).toISOString().split('T')[0];
+    };
+
     return (
         <div className="card bg-white rounded-lg" style={{ width: '24rem', borderRadius: '20px' }}>
             <div className="text-center">
@@ -43,7 +48,7 @@ export const AccountCard = ({ account }) => {
                     <strong>Address:</strong> {account.address}, {account.postalCode}<br />
                     <strong>City:</strong> {account.city} <br />
                     <strong>Country:</strong> {account.country} <br />
-                    <strong>Birth Date:</strong> {new Date(account.birthDate).toLocaleDateString()}
+                    <strong>Birth Date:</strong> {formatDate(account.birthDate)}
                 </p>
             </div>
         </div>
